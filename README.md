@@ -7,6 +7,7 @@ Wget and run this script with the following commands
 
 
 to begin the Kexow inital setup install and configuration.
+
 This script will ask you to provide your secret adress, which is where all the security credential files are stored
 or, with your input, generate new credentials files.
 
@@ -15,5 +16,4 @@ or, with your input, generate new credentials files.
 ***and if this script can update the place where the private wget is, well then bingo
 This script will install git and then download and install and configure kexow compeonets
 
-Total Build List 11
-
+Please refer to total build list 11.txt in the kexow-install repository as the readme for the entire kexow project, when its done it will go here.
