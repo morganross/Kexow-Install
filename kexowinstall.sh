@@ -15,3 +15,7 @@ ask for secrete tar website
 download security files
 download Kexow-setup-scripts and kexow-website
 install em
+
+
+
+this is a test of notepadd++ but not really
