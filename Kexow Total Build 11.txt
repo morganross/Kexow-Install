@@ -1,0 +1,266 @@
+sudo sed -i -e 's/us-west-2.ec2.archive/old-releases/g' /etc/apt/sources.list
+
+sudo vi lamp.sh
+
+################
+#!/bin/bash
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo passwd ubuntu
+sudo service ssh restart
+sudo apt-get update
+sudo apt-get -y install apache2
+sudo apt-get -y install mysql-server libapache2-mod-auth-mysql php5-mysql 
+sudo /usr/bin/mysql_secure_installation
+sudo apt-get -y install php5 libapache2-mod-php5 php5-mcrypt
+sudo service apache2 restart
+sudo apt-get -y install phpmyadmin
+sudo sed -i '$ a\
+Include /etc/phpmyadmin/apache.conf' /etc/apache2/apache2.conf
+sudo service apache2 restart
+sudo wget "https://docs.google.com/uc?export=download&confirm=no_antivirus&id=0B0l4MvyzZZSMHI0ZVhxNWM" -O website.tar
+sudo tar -C /var/www/ -xvf website.tar
+sudo wget "https://docs.google.com/uc?export=download&confirm=no_antivirus&id=0B0l4MvmZWR0Tm1CWWYtamM" -O installer.tar
+sudo tar -xvf installer.tar
+sudo chmod 400 /home/ubuntu/installer/clients.pem
+sudo chmod 755 /home/ubuntu/installer/server_script.sh
+sudo chmod 4777 /var/www/adscript.sh
+sudo chmod 4777 /var/www/xtra/changestaus.sh
+sudo wget "http://downloads.sourceforge.net/project/ajaxplorer/pydio/stable-channel/5.0.4/pydio-core-5.0.4.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fajaxplorer%2Ffiles%2Fpydio%2Fstable-channel%2F5.0.4%2F&ts=1388124556&use_mirror=superb-dca2" -O pyro.tar.gz
+sudo mkdir /var/www/pyro
+sudo tar -C /var/www/pyro/ -xvzf pyro.tar.gz
+#sudo chmod 777 /etc/apache2/sites-available/default
+#sudo sed -i 's/DocumentRoot \/var\/www/DocumentRoot \/var\/www/g' /etc/apache2/sites-available/default
+#sudo sed -i 's/Directory \/var\/www\//Directory \/var\/www\//g' /etc/apache2/sites-available/default
+sudo /etc/init.d/apache2 restart
+sudo chmod 777 /etc/ssh/ssh_config
+sudo echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+##############################
+
+sudo sh lamp.sh
+
+#change pass in main meu script with quotes and changestatus
+
+http://54.245.102.50/phpmyadmin/
+
+usercaker
+
+ajaxplorer
+
+http://54.245.102.50/install/
+##change db settings
+sudo rm -rf /var/www/install
+
+sudo visudo
+#####
+www-data ALL=NOPASSWD:ALL
+www-data ALL=NOPASSWD: /var/www
+######
+#remove newsite from register.php and register and changestatus i think iu idid?
+cd installer
+
+sudo ./main_menu.sh
+
+sudo chmod 777 /var/log/named/queries.log
+
+sudo chmod 777 /etc/bind/list.txt
+
+#sudo chmod 400 /home/ubuntu/installer/clients.pem
+this is restard.pem
+#sudo chmod 777 /home/ubuntu/installer/clients.pem
+
+sudo chmod 777 -R /var/www/xtra/
+
+sudo chmod 755 /home/ubuntu/installer/server_script.sh
+
+#http://54.245.102.50/phpldapadmin/
+sudo chmod 777 -R /var/www/pyro/
+sudo reboot
+
+bash -x server_script.sh &
+
+#####
+
+54.245.102.50
+
+dc=us-west-2,dc=compute,dc=internal
+
+cn=admin,dc=us-west-2,dc=compute,dc=internal
+
+#####
+
+##sudo mv /var/www/pyro/ /var/www/newsite/pyro/
+
+54.245.102.50
+##cn=admin,dc=us-west-2,dc=compute,dc=internal
+
+##ou=Users,dc=us-west-2,dc=compute,dc=internal
+
+change bootstrap dir and to 777
+cahnge changestaus to 777
+#########CLIENTCLIENTCLIENTCLIENTCLIENT
+sudo sed -i -e 's/us-west-2.ec2.archive/old-releases/g' /etc/apt/sources.list
+sudo vi ldapc.sh
+
+####### ldapc.sh ########
+#!/bin/bash
+
+ldap_server='ldap://54.245.102.50'
+ldap_base='dc=us-west-2,dc=compute,dc=internal'
+ldap_users_base="ou=users,${ldap_base}"
+ldap_group_base="ou=groups,${ldap_base}"
+
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo passwd ubuntu
+ 
+##mising ssh restart
+sudo apt-get update && sudo apt-get -y install ldap-utils libnss-ldapd libpam-ldap nslcd
+
+# Generate ldap.conf
+cat <<EOF | sudo tee /etc/ldap/ldap.conf
+uri  ${ldap_server}
+base ${ldap_base}
+
+ldap_version   3
+timelimit      30
+bind_timelimit 30
+idle_timelimit 3600
+bind_policy    soft
+deref          never
+
+nss_base_passwd ${ldap_users_base}?sub
+nss_base_shadow ${ldap_users_base}?sub
+nss_base_group  ${ldap_groups_base}?one
+
+pam_login_attribute  uid
+pam_password         md5
+pam_member_attribute member
+pam_filter           objectClass=posixAccount
+
+#ssl start_tls
+#ssl on
+#TLS_CACERTFILE /etc/ssl/certs/ldap.pem
+EOF
+
+sudo ln -fs /etc/ldap/ldap.conf /etc/ldap.conf
+
+cat <<EOF | sudo tee /etc/nslcd.conf
+uid nslcd
+gid nslcd
+
+uri  ${ldap_server}
+base ${ldap_users_base}
+base ${ldap_group_base}
+ldap_version   3
+EOF
+
+# PAM files
+cat <<EOF | sudo tee /etc/pam.d/common-account
+account [success=2 new_authtok_reqd=done default=ignore]  pam_unix.so
+account [success=1 default=ignore]                        pam_ldap.so
+account requisite                                         pam_deny.so
+account required                                          pam_permit.so
+EOF
+
+cat <<EOF | sudo tee /etc/pam.d/common-auth
+auth  [success=2 default=ignore]  pam_unix.so  nullok_secure
+auth  [success=1 default=ignore]  pam_ldap.so  use_first_pass
+auth  requisite                   pam_deny.so
+auth  required                    pam_permit.so
+EOF
+
+cat <<EOF | sudo tee /etc/pam.d/common-password
+password  [success=2 default=ignore]                  pam_unix.so obscure sha512
+password  [success=1 user_unknown=ignore default=die] pam_ldap.so use_authtok try_first_pass
+password  requisite                                   pam_deny.so
+password  required                                    pam_permit.so
+EOF
+
+cat <<EOF | sudo tee /etc/pam.d/common-session
+session [default=1]   pam_permit.so
+session requisite     pam_deny.so
+session required      pam_permit.so
+session required      pam_unix.so
+session optional      pam_ldap.so
+session required      pam_mkhomedir.so skel=/etc/skel umask=0022
+EOF
+
+[ -z "`grep ldap /etc/nsswitch`" ] && sudo sed -i 's/compat/compat ldap/g' /etc/nsswitch.conf
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+
+sudo service nscd  stop
+sudo service nslcd restart
+sudo service ssh   restart
+
+sudo apt-get -y install autofs
+echo " /home    /etc/auto.home " >> /etc/auto.master
+touch /etc/auto.home
+echo " *    54.245.102.50:/home/& " >> /etc/auto.home
+sudo service autofs restart
+sudo apt-get -y install ubuntu-desktop
+sudo apt-get -y install gnome-core gnome-session-fallback
+sudo apt-get -y install python-software-properties
+sudo add-apt-repository ppa:x2go/stable
+sudo apt-get update
+sudo apt-get -y install x2goserver
+sudo apt-get -y install xautolock
+sudo chmod +s /sbin/shutdown
+sudo touch /etc/xdg/autostart/xautolock.desktop
+sudo chmod 777 /etc/xdg/autostart/xautolock.desktop
+sudo echo "[Desktop Entry]
+Type=Application
+Exec=/opt/xautolock.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=XAUTOLOCK
+Name=XAUTOLOCK
+Comment[en_US]=xautolock emre
+Comment=xautolock emre" > /etc/xdg/autostart/xautolock.desktop
+sudo echo "#!/bin/sh
+shutdown -h now
+exit 0" > /etc/gdm/PostSession/Default
+sudo touch /opt/xautolock.sh
+sudo chmod 755 /opt/xautolock.sh
+sudo echo '#!/bin/bash
+xautolock -time 3 -locker "/sbin/shutdown -h now" &' > /opt/xautolock.sh
+sudo chmod 755 /opt/xautolock.sh
+################################################
+
+sudo sh -x ldapc.sh
+restart server
+
+######### Pydio #########
+
+ubuntu
+
+
+database
+root
+
+
+install
+LOGIN
+setttings
+global settings
+core plugins
+auth
+#multiple
+#ldap/ad
+core config
+authentification
+main instance
+54.245.102.50
+cn=admin,dc=us-west-2,dc=compute,dc=internal
+mkrstaJ&&3KlkFddse3
+ou=Users,dc=us-west-2,dc=compute,dc=internal
+auto create
+
+create ubuntu user in ldap
+
+botstrap repositories remove personal, remove variable , absolute path
+777 home -R
+
+
+donty forget change pydio home dir
+change keyfile name in aws
+
