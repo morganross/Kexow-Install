@@ -12,5 +12,5 @@ or, with your input, generate new credentials files.
 
 
 ***this way you can change all your aws keys, and all your kexow keys at the same time, and never have to update the script
-
+***and if this script can update the place where the private wget is, well then bingo
 This script will install git and then download and install and configure kexow compeonets
