@@ -17,3 +17,5 @@ or, with your input, generate new credentials files.
 This script will install git and then download and install and configure kexow compeonets
 
 Please refer to total build list 11.txt in the kexow-install repository as the readme for the entire kexow project, when its done it will go here.
+
+this file will ask you to keep a seperate worksheet that includes the server IP. a future upgrade can fix this)
