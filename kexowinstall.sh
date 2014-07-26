@@ -22,6 +22,6 @@ this is a test of notepadd++ but not really
 put lamp.sh and ldap.sh into the main menu.
 put serer_script into main meu
 put download website into meain menu
-FUTURE download usercake and pydio from source, not static
+
 
 
