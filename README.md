@@ -1,5 +1,9 @@
 Kexow-Install
 =============
+Run these commands to begin installation process
+sudo wget kexow-install.sh
+sudo sh kexow-sh
+
 
 Public Script for initial installation and setup of Kexow
 
