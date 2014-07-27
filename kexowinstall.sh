@@ -1,5 +1,7 @@
 #!/bin/bash
 
+##the client script is a simple wget and execute, in the future we can include an option in this script to do nothing but run that wget and execute, even though it wounldnt save any steps
+##it would make one less link to remember.
 
 #where u want to download security file from?
 sudo wget http://$vARIABLE creds.tar
@@ -19,40 +21,55 @@ git config --global user.email newuser@example.com
 #download Kexow-setup-scripts 
 git clone git://github.com/morganross/Kexow-Server-Setup-Scripts.git
 
+cd /installer
+sudo ./main_menu.sh
 
 
-
-
-
-
-run main menu
 
 ##include lamp.sh into main menu
 ##include server script in main menu
-
-enter in password, then use it to change pass in dbsettings and changestatus
-
-
-
-this is a test of notepadd++ but not really
-
-put lamp.sh and ldap.sh into the main menu.
-put serer_script into main meu
-put download website into meain menu
+##with script change pass in dbsettings and changestatus
+#put download website into main menu
 
 
-while true; do
-    read -p "Do you wish to install this program?" yn
-    case $yn in
-        [Yy]* ) make install; break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+
+
+
+
+
+
 
 echo -n "Enter some text > "
 read text
 echo "You entered: $text"
+
+
+
+source aws_bind_ip.sh
+while true;do
+	echo "*******************************************************************"
+	echo "1. Install ec2-api-tools"
+	echo "9. Run the LDAP script"
+	echo "Press any other to Exit"
+	echo "*******************************************************************"
+	echo -n "Enter your choice :"
+	read choice
+case "$choice" in
+"1")
+	aws_install
+	sleep 2
+   ;;
+"9")
+    run_ldap_func
+    sleep 2
+    ;;
+
+*)
+    echo "exit from menu"
+    break
+    ;;
+esac
+done
        
 
 
