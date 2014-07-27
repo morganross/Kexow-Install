@@ -1,5 +1,14 @@
 #!/bin/bash
 
+
+#where u want to download security file from?
+sudo wget http://$vARIABLE creds.tar
+extract creds.tar /installer
+
+#What is the new root pass?
+sudo mk pass.txt
+sudo echo $variable>pass.txt
+
 #install git
 sudo apt-get install git-core
 git config --global user.name "NewUser"
@@ -11,10 +20,10 @@ git config --global user.email newuser@example.com
 git clone git://github.com/morganross/Kexow-Server-Setup-Scripts.git
 
 
-where u want to download security file tar from
 
-extract creds.tar
-##cred.tar should cotain 4 files. pk creds cert and client. here is an explaination of their aws equivelints and how to generate them, or mb this is inthe readme
+
+
+
 
 run main menu
 
@@ -31,5 +40,19 @@ put lamp.sh and ldap.sh into the main menu.
 put serer_script into main meu
 put download website into meain menu
 
+
+while true; do
+    read -p "Do you wish to install this program?" yn
+    case $yn in
+        [Yy]* ) make install; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+echo -n "Enter some text > "
+read text
+echo "You entered: $text"
+       
 
 
