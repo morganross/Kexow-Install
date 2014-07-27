@@ -1,25 +1,16 @@
 Kexow-Install
 =============
 Run these commands to begin installation process
-sudo wget kexow-install.sh
-sudo sh kexow-sh
 
+#sudo wget goo.gl/8ET70z kexow-install.sh
+#sudo sh kexow-install.sh
 
-Public Script for initial installation and setup of Kexow
+The install script will ask you to provide your secret adress where all the security credential files are stored
 
-Wget and run this script with the following commands
+This script will ask you provide a new password. Copy it, you'll need to enter it manually later, along with your elastic IP
 
-
-to begin the Kexow inital setup install and configuration.
-
-This script will ask you to provide your secret adress, which is where all the security credential files are stored
-or, with your input, generate new credentials files.
-
-
-***this way you can change all your aws keys, and all your kexow keys at the same time, and never have to update the script
-***and if this script can update the place where the private wget is, well then bingo
 This script will install git and then download and install and configure kexow compeonets
 
 Please refer to total build list 11.txt in the kexow-install repository as the readme for the entire kexow project, when its done it will go here.
 
-this file will ask you to keep a seperate worksheet that includes the server IP. a future upgrade can fix this)
+
