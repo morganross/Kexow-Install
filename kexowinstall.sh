@@ -1,8 +1,15 @@
-bin bash
+#!/bin/bash
+
+#install git
+sudo apt-get install git-core
+git config --global user.name "NewUser"
+git config --global user.email newuser@example.com
 
 
-install git
-download Kexow-setup-scripts 
+
+#download Kexow-setup-scripts 
+git clone git://github.com/morganross/Kexow-Server-Setup-Scripts.git
+
 
 where u want to download security file tar from
 
