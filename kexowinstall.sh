@@ -4,13 +4,14 @@
 #where u want to download security file from?
 echo -n "Where you wanna download the security files from?"
 read text
-sudo wget $text creds.tar
-extract creds.tar /installer
+sudo wget $text -O creds.tar
+sudo tar -xvf creds.tar
+
 
 #What is the new root pass?
-sudo mk pass.txt
+sudo touch pass.txt
 echo -n "enter in the new password"
-read passs
+read pass
 $passs>pass.txt
 
 #install git
@@ -23,9 +24,9 @@ sudo apt-get install git-core
 
 #download Kexow-setup-scripts (installer)
 git clone git://github.com/morganross/Kexow-Server-Setup-Scripts.git
-git clone git://github.com/morganross/userfrosting.git
-git clone git://github.com/morganross/pydio.git
 git clone git://github.com/morganross/Kexow-website.git
+#git clone git://github.com/morganross/userfrosting.git
+#git clone git://github.com/morganross/pydio.git
 
 sudo mv fiuke to the right /directores
 
