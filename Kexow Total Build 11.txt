@@ -64,16 +64,16 @@ sudo chmod 777 /var/log/named/queries.log
 
 sudo chmod 777 /etc/bind/list.txt
 
-#sudo chmod 400 /home/ubuntu/installer/clients.pem
-this is restard.pem
-#sudo chmod 777 /home/ubuntu/installer/clients.pem
+sudo chmod 400 /home/ubuntu/installer/clients.pem
 
 sudo chmod 777 -R /var/www/xtra/
 
 sudo chmod 755 /home/ubuntu/installer/server_script.sh
 
-#http://54.245.102.50/phpldapadmin/
 sudo chmod 777 -R /var/www/pyro/
+
+#http://54.245.102.50/phpldapadmin/
+
 sudo reboot
 
 bash -x server_script.sh &
@@ -98,7 +98,7 @@ cn=admin,dc=us-west-2,dc=compute,dc=internal
 change bootstrap dir and to 777
 cahnge changestaus to 777
 #########CLIENTCLIENTCLIENTCLIENTCLIENT
-sudo sed -i -e 's/us-west-2.ec2.archive/old-releases/g' /etc/apt/sources.list
+
 sudo vi ldapc.sh
 
 ####### ldapc.sh ########
