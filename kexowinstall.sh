@@ -4,9 +4,8 @@
 #where u want to download security file from?
 echo -n "Where you wanna download the security files from?"
 read text
-sudo wget $text -O creds.tar
+sudo wget https://docs.google.com/uc?export=download&confirm=no_antivirus&id=$text -O creds.tar
 sudo tar -xvf creds.tar
-
 
 #What is the new root pass?
 sudo touch pass.txt
