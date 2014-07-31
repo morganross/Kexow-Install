@@ -27,65 +27,11 @@ echo -n "enter in the new password"
 read pass
 echo $pass>pass.txt
 
+sudo sed -i "s/PASSWORD85/${pass}/g" /home/ubuntu/Kexow-Server-Setup-Scripts/aws_bind_ip.sh
+
 cd Kexow-Server-Setup-Scripts
 sudo bash ./main_menu.sh
 
-
-
-sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
-sudo chown ubuntu /home/ubuntu
-sudo chown ubuntu /home/ubuntu/
-sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
-sudo chown -R ubuntu /home/ubuntu
-sudo chown -R ubuntu /home/ubuntu/
-sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
-sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
-sudo chown ubuntu /home/ubuntu *
-sudo chown ubuntu /home/ubuntu/ *
-sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
-sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
-sudo chown -R ubuntu /home/ubuntu *
-sudo chown -R ubuntu /home/ubuntu/ *
-sudo chmod 777 /home/ubuntu/
-sudo chmod 777 /home/ubuntu
-sudo chmod 777 /home/ubuntu/Kexow-Server-Setup-Scripts/
-sudo chmod 777 /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chmod 777 * /home/ubuntu/
-sudo chmod 777 * /home/ubuntu
-sudo chmod 777 * /home/ubuntu/Kexow-Server-Setup-Scripts/
-sudo chmod 777 * /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
-sudo chown ubuntu:ubuntu /home/ubuntu
-sudo chown ubuntu:ubuntu /home/ubuntu/
-sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
-sudo chown -R ubuntu:ubuntu /home/ubuntu
-sudo chown -R ubuntu:ubuntu /home/ubuntu/
-sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
-sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
-sudo chown ubuntu:ubuntu /home/ubuntu *
-sudo chown ubuntu:ubuntu /home/ubuntu/ *
-sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
-sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
-sudo chown -R ubuntu:ubuntu /home/ubuntu *
-sudo chown -R ubuntu:ubuntu /home/ubuntu/ *
-
-
-
-#sudo mv files to the right /directores
-
-
-#sudo sed pass in dbsettings with pass.txt
-
-
-cd Kexow-Server-Setup-Scripts
-sudo sh ./main_menu.sh
-
-
-##include server script in main menu
 ##with script change pass in dbsettings and changestatus and aws bind
 
 
