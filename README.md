@@ -1,3 +1,6 @@
+main menu must be called with bash, otherwise it defaults to dash witch does not suppert source
+
+
 Kexow-Install
 =============
 Run these commands to begin installation process
