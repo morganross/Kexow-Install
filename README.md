@@ -14,4 +14,3 @@ This script will ask you provide a new password.
 
 This script will install git and then download and install and configure kexow compeonets
 
-
