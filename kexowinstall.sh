@@ -13,7 +13,7 @@ sudo touch pass.txt
 sudo chmod 777 pass.txt
 echo -n "enter in the new password"
 read pass
-$pass>pass.txt
+echo $pass>pass.txt
 
 #install git
 sudo apt-get update
