@@ -5,8 +5,8 @@
 echo -n "Where you wanna download the security files from?"
 read text
 sudo wget 'https://docs.google.com/uc?export=download&confirm=no_antivirus&id='$text -O creds.tar
-sudo tar -xvf creds.tar
-sudo tar -C /Kexow-Server-Setup-Scripts -xvf creds.tar
+sudo mkdir Kexow-Server-Setup-Scripts
+sudo tar -C Kexow-Server-Setup-Scripts -xvf creds.tar
 
 #What is the new root pass?
 sudo touch pass.txt
