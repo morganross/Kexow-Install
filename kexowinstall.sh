@@ -15,7 +15,7 @@ git clone git://github.com/morganross/Kexow-website.git
 #git clone git://github.com/morganross/pydio.git
 
 #where u want to download security file from?
-echo -n "Where you wanna download the security files from?"
+echo -n "Type in your secret key for the shared google drive folder where creds.tar is located?"
 read text
 sudo wget 'googledrive.com/host/'$text'/creds.tar' -O creds.tar
 sudo tar -C Kexow-Server-Setup-Scripts -xvf creds.tar
