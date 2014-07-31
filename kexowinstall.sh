@@ -17,7 +17,7 @@ git clone git://github.com/morganross/Kexow-website.git
 #where u want to download security file from?
 echo -n "Where you wanna download the security files from?"
 read text
-sudo wget 'https://docs.google.com/uc?export=download&confirm=no_antivirus&id='$text -O creds.tar
+sudo wget 'googledrive.com/host/'$text'/creds.tar' -O creds.tar
 sudo tar -C Kexow-Server-Setup-Scripts -xvf creds.tar
 
 #What is the new root pass?
