@@ -28,6 +28,51 @@ read pass
 echo $pass>pass.txt
 
 
+sudo sh ./main_menu.sh
+
+
+
+sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
+sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
+sudo chown ubuntu /home/ubuntu
+sudo chown ubuntu /home/ubuntu/
+sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
+sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
+sudo chown -R ubuntu /home/ubuntu
+sudo chown -R ubuntu /home/ubuntu/
+sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
+sudo chown ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
+sudo chown ubuntu /home/ubuntu *
+sudo chown ubuntu /home/ubuntu/ *
+sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
+sudo chown -R ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
+sudo chown -R ubuntu /home/ubuntu *
+sudo chown -R ubuntu /home/ubuntu/ *
+sudo chmod 777 /home/ubuntu/
+sudo chmod 777 /home/ubuntu
+sudo chmod 777 /home/ubuntu/Kexow-Server-Setup-Scripts/
+sudo chmod 777 /home/ubuntu/Kexow-Server-Setup-Scripts
+sudo chmod 777 * /home/ubuntu/
+sudo chmod 777 * /home/ubuntu
+sudo chmod 777 * /home/ubuntu/Kexow-Server-Setup-Scripts/
+sudo chmod 777 * /home/ubuntu/Kexow-Server-Setup-Scripts
+sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
+sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
+sudo chown ubuntu:ubuntu /home/ubuntu
+sudo chown ubuntu:ubuntu /home/ubuntu/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
+sudo chown -R ubuntu:ubuntu /home/ubuntu/
+sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
+sudo chown ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
+sudo chown ubuntu:ubuntu /home/ubuntu *
+sudo chown ubuntu:ubuntu /home/ubuntu/ *
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts *
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Kexow-Server-Setup-Scripts/ *
+sudo chown -R ubuntu:ubuntu /home/ubuntu *
+sudo chown -R ubuntu:ubuntu /home/ubuntu/ *
+
 
 
 #sudo mv files to the right /directores
