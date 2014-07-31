@@ -5,7 +5,11 @@
 echo -n "Where you wanna download the security files from?"
 read text
 sudo wget 'https://docs.google.com/uc?export=download&confirm=no_antivirus&id='$text -O creds.tar
+<<<<<<< HEAD
 sudo tar -xvf creds.tar
+=======
+sudo mkdir Kexow-Server-Setup-Scripts
+>>>>>>> origin/master
 sudo tar -C Kexow-Server-Setup-Scripts -xvf creds.tar
 
 #What is the new root pass?
@@ -13,7 +17,7 @@ sudo touch pass.txt
 sudo chmod 777 pass.txt
 echo -n "enter in the new password"
 read pass
-$passs>pass.txt
+echo $pass>pass.txt
 
 #install git
 sudo apt-get update
@@ -35,7 +39,7 @@ sudo mv fiuke to the right /directores
 sudo sed pass in dbsettings with pass.txt
 
 
-cd /installer
+cd /Kexow-Server-Server-Scripts
 sudo ./main_menu.sh
 
 
