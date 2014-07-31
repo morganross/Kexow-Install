@@ -36,7 +36,7 @@ echo $pass>pass.txt
 #sudo sed pass in dbsettings with pass.txt
 
 
-cd /Kexow-Server-Server-Scripts
+cd Kexow-Server-Server-Scripts
 sudo ./main_menu.sh
 
 
