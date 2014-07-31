@@ -27,8 +27,8 @@ echo -n "enter in the new password"
 read pass
 echo $pass>pass.txt
 
-
-sudo sh ./main_menu.sh
+cd Kexow-Server-Setup-Scripts
+sudo bash ./main_menu.sh
 
 
 
