@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #install git
-sudo apt-get update
-sudo apt-get install git-core
+sudo apt-get -y update
+sudo apt-get -y install git-core
 #git config --global user.name "NewUser"
 #git config --global user.email newuser@example.com
 
