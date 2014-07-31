@@ -37,7 +37,7 @@ echo $pass>pass.txt
 
 
 cd Kexow-Server-Setup-Scripts
-sudo ./main_menu.sh
+sudo sh ./main_menu.sh
 
 
 ##include server script in main menu
