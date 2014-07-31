@@ -35,7 +35,7 @@ sudo mv fiuke to the right /directores
 sudo sed pass in dbsettings with pass.txt
 
 
-cd /installer
+cd /Kexow-Server-Server-Scripts
 sudo ./main_menu.sh
 
 
