@@ -1,4 +1,13 @@
 #!/bin/bash
+##Run these commands to download this script
+##sudo wget goo.gl/8ET70z -O kexow-install.sh
+##sudo sh kexow-install.sh
+
+#in the future combine this script with main menu, but accesible by wget, which means it must be stand alone no source
+
+
+
+#do you want to install cliant or server?
 
 #install git
 sudo apt-get -y update
