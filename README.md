@@ -25,3 +25,11 @@ update that goo.gl to main menu
 get moniter log file outa aws_bind_ip and make its own script
 OR
 put serverscript into main menu instead of calling it.
+###TODO
+git pydio
+configure pydio
+install vnc on client -local and ldap
+git guacamole on client
+configure guacamole on client
+remake website to include headers
+remake website to git userfrosting
