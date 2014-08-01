@@ -21,3 +21,7 @@ add git install to main menu
 add aws_bind_ip to main menu
 
 update that goo.gl to main menu
+
+get moniter log file outa aws_bind_ip and make its own script
+OR
+put serverscript into main menu instead of calling it.
