@@ -14,6 +14,8 @@ This script will ask you provide a new password.
 This script will install git and then download and install and configure kexow compeonets
 
 ##TODO
+move main menu to kexow install
+
 add client script to main menu
 
 add git install to main menu
