@@ -19,10 +19,14 @@ add client script to main menu
 put serverscript into main menu instead of calling it.
 
 debug main menu
-
+comment main menu
+re-order main menu
 add "make files" to main menu, the files that are in setup scripts
 
+treat server_script and 5 monmiter log file seperatly from install scripts. they should be thier own?
+
 ###TODO
+make main menu log to file in addition to shell
 git pydio
 
 configure pydio

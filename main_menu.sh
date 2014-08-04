@@ -29,7 +29,8 @@ while true;do
 	read choice
 case "$choice" in
 "1")
-	sudo perl -pi.orig -e   'next if /-backports/; s/^# (deb .* multiverse)$/$1/'   /etc/apt/sources.list
+#Install API Tools
+sudo perl -pi.orig -e   'next if /-backports/; s/^# (deb .* multiverse)$/$1/'   /etc/apt/sources.list
 sudo apt-add-repository ppa:awstools-dev/awstools
 sudo apt-get -y update
 sudo apt-get install -y ec2-api-tools
@@ -41,33 +42,104 @@ fi
 	sleep 2
    ;;
 "2")
-    sudo apt-get -y install bind9
+#Install BIND9 Package AND make some files
+	sudo apt-get -y install bind9
 if [ $? -ne 0 ]; then
 	echo "Failed to install bind9"
 	return 1
-fi
-#configure log file location
-echo -e "\n Copy named.conf.local file to /etc/bind directory"
-sudo cp -f named.conf.local /etc/bind
+fi    
+sudo chmod a+w /etc/bind/zones
+cat > /etc/bind/named.conf.local << EOF
+zone "kexow.com" {
+        type master;
+        file "/etc/bind/zones/kexow.com.zone";
+        };
 
-if [ ! -e /etc/bind/named.conf.log ]; then
-	sudo cp -f named.conf.log /etc/bind/named.conf.log
-else
-	echo -en "\n named.conf.log already exists. Do you want overwrite? (y/n): "
-        read overwrite
-        if [ "$overwrite" = "y" ]; then
-		sudo cp -f named.conf.log /etc/bind/named.conf.log
-        fi
-fi
+zone "102.254.54.in-addr.arpa" {
+     type master;
+     file "/etc/bind/zones/rev.102.254.54.in-addr.arpa";
 
-#zones directory and log file creation
-if [ ! -d /etc/bind/zones ]; then
-	echo -e "\n Create zones directory and copy necessary files"
-	sudo mkdir /etc/bind/zones
-	sudo chmod a+w /etc/bind/zones
-fi
-cp -f kexow.com.zone /etc/bind/zones
-cp -f rev.102.254.54.in-addr.arpa /etc/bind/zones
+};
+
+EOF
+
+cat > /etc/bind/named.conf.log << EOF
+logging {
+        channel update_debug {
+                file "/var/log/named/update_debug.log" versions 3 size 100k;
+                severity debug;
+                print-severity  yes;
+                print-time      yes;
+        };
+        channel security_info {
+                file "/var/log/named/security_info.log" versions 1 size 100k;
+                severity info;
+                print-severity  yes;
+                print-time      yes;
+        };
+        channel bind_log {
+                file "/var/log/named/bind.log" versions 3 size 1m;
+                severity info;
+                print-category  yes;
+                print-severity  yes;
+                print-time      yes;
+        };
+
+        channel query_log {
+                file "/var/log/named/queries.log";
+                severity debug 3;
+        };
+
+
+        category default { bind_log; };
+        category lame-servers { null; };
+        category update { update_debug; };
+        category update-security { update_debug; };
+        category security { security_info; };
+        category queries { query_log; };
+};
+
+EOF
+
+cat > /etc/bind/zones/rev.102.254.54.in-addr.arpa << EOF
+@ IN SOA ns1.kexow.com. admin.kexow.com. (
+                        2006071801; serial
+                        28800; refresh, seconds
+                        604800; retry, seconds
+                        604800; expire, seconds
+                        86400 ); minimum, seconds
+
+                     IN  NS ns1.kexow.com.
+
+50                  IN      PTR    kexow.com
+
+EOF
+
+cat > /etc/bind/zones/kexow.com.zone << EOF
+kexow.com. IN      SOA     ns1.kexow.com. admin.kexow.com. (
+          2006071801
+          10    
+          600      
+          10 
+          10)  
+kexow.com. IN      NS      ns1.kexow.com.
+kexow.com. IN      NS      ns2.kexow.com.
+kexow.com. IN      MX     10 mta.kexow.com.
+
+kexow.com. IN A 54.245.102.50
+www           IN      A       54.245.102.50
+mta             IN      A      54.245.102.50
+ns1              IN      A       54.245.102.50
+ns2              IN      A       54.245.102.50
+*	IN	A		54.245.102.50
+connect IN A 54.184.26.63
+EOF
+	
+	
+
+
+
+
 sudo touch /etc/bind/list.txt
 sudo chmod 777 /etc/bind/list.txt
 
@@ -231,6 +303,7 @@ done
 ldap_users_base="ou=users,${ldap_base}"
 ldap_group_base="ou=groups,${ldap_base}"
 
+wget -qO- http://ipecho.net/plain ; echo
 sudo apt-get update && sudo apt-get -y install phpldapadmin slapd ldap-utils libnss-ldap libpam-ldap nslcd
 sudo sed -i "s/dc=example,dc=com/${ldap_base}/g" /etc/phpldapadmin/config.php
 
