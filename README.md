@@ -14,7 +14,7 @@ sudo bash main_menu.sh
 
 
 add client script to main menu
-
+add some feedback to client script
 
 put serverscript into main menu instead of calling it.
 
