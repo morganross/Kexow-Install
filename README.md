@@ -19,7 +19,7 @@ add some feedback to client script
 put serverscript into main menu instead of calling it.
 
 debug main menu
-
+add some GODDAMN parameters to the ldap installer from that wget what is my ip
 add "make files" to main menu, the files that are in setup scripts
 
 ###TODO
