@@ -1,11 +1,20 @@
 Kexow-Install
 =============
-Run these commands to begin installation process
+Run these commands to begin installation process for old main menu
 
 sudo wget goo.gl/8ET70z -O kexow-install.sh
 
 
-sudo sh kexow-install.sh
+sudo sh kexow_install.sh
+
+
+NEW main menu
+
+sudo wget goo.gl/ntMQzy -O main_menu.sh
+
+sudo bash main_menu.sh
+
+
 
 The install script will ask you to provide your secret adress where all the security credential files are stored
 
