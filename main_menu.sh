@@ -216,7 +216,6 @@ echo "Successfully set EC2 environment variables"
 "8")
     echo "Script trying to get all IP from ec2-spot-instance"
 >$IP_LIST
-aws_setup
 echo "list.txt is null populate existing instance IP"
 ip_address=$(ec2-describe-instances  | awk '/INSTANCE/{print $14}')
 IFS=$'\n'
@@ -314,14 +313,13 @@ git clone git://github.com/morganross/Kexow-website.git
 echo -n "Type in your secret key for the shared google drive folder where creds.tar is located?"
 read text
 sudo wget 'googledrive.com/host/'$text'/creds.tar' -O creds.tar
-sudo mkdir /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo chmod 777 -R /home/ubuntu/Kexow-Server-Setup-Scripts
-sudo tar -C Kexow-Server-Setup-Scripts -xvf creds.tar
+sudo tar -xvf creds.tar
     sleep 2
     ;;	
 "f")
     #here is the client setup script 
     sleep 2
+	;;
 *)
     echo "exit from menu"
     break
