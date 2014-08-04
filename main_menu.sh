@@ -135,14 +135,8 @@ ns2              IN      A       54.245.102.50
 connect IN A 54.184.26.63
 EOF
 	
-	
-
-
-
-
 sudo touch /etc/bind/list.txt
 sudo chmod 777 /etc/bind/list.txt
-
 if [ ! -e /var/log/named ]; then
 	sudo mkdir /var/log/named
 fi
@@ -152,7 +146,6 @@ sudo chmod 777 /var/log/named/bind.log
 sudo chmod 777 /var/log/named/security_info.log
 sudo chmod 777 /var/log/named/update_debug.log
 
-
 #Enable log file configuration in named.conf
 if ! grep -q named.conf.log /etc/bind/named.conf; then
 	sudo echo 'include "/etc/bind/named.conf.log";' >> /etc/bind/named.conf
@@ -161,9 +154,9 @@ else
 	echo -e "\n named.conf.log already in named.conf"
 fi
        	echo -e "Successfully installed bind9"
-   
     sleep 2
     ;;
+
 "3")
     	sudo /etc/init.d/bind9 restart > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
@@ -183,6 +176,7 @@ fi
 	export AWS_CREDENTIAL_FILE=$HOME/creds.txt
     sleep 2
     ;;
+
 "5")
     if [ -e $LOG ]; then
       #sudo mv $LOG $LOG.$$
@@ -205,7 +199,6 @@ tail -F $LOG |while read LINE;do
         sudo echo "connect IN A $NEW_IP" >>$ZFILE
 	echo "new zone written with $NEW_IP Delete the First line of the $IP_LIST"
         sudo sed -i -e "1 d" $IP_LIST
-
 else
 	echo "Fail to find the $ZFILE or $IP_LIST"
 	return 1
@@ -277,7 +270,7 @@ fi
     sleep 2
     ;;
 "7")
-    echo 'export EC2_URL=https://ec2.us-west-2.amazonaws.com' >>$HOME/.bashrc
+echo 'export EC2_URL=https://ec2.us-west-2.amazonaws.com' >>$HOME/.bashrc
 echo 'export EC2_PRIVATE_KEY=$(echo $HOME/pk.pem)' >>$HOME/.bashrc
 echo 'export EC2_CERT=$(echo $HOME/cert.pem)'  >>$HOME/.bashrc
 echo 'export AWS_CREDENTIAL_FILE=$HOME/creds.txt' >>$HOME/.bashrc
@@ -299,7 +292,7 @@ done
     sleep 2
     ;;
 "9")
-    ldap_base='dc=us-west-2,dc=compute,dc=internal'
+ldap_base='dc=us-west-2,dc=compute,dc=internal'
 ldap_users_base="ou=users,${ldap_base}"
 ldap_group_base="ou=groups,${ldap_base}"
 
@@ -331,7 +324,8 @@ sudo ldapadd -x -D "cn=admin,dc=us-west-2,dc=compute,dc=internal" -w PASSWORD85 
     sleep 2
     ;;
 "a")
-    sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+#Install LAMP
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 sudo passwd ubuntu
 sudo service ssh restart
 sudo apt-get update
@@ -356,7 +350,73 @@ append sudoers file
     sleep 2
     ;;
 "b")
-    bash -x ./server_script.sh
+    ##Configuration parameters
+AMINAME=ami-aa39599a
+CHECKPERIOD=60 #in seconds
+File=/etc/bind/list.txt
+##Command Aliases
+EC2DESC=ec2-describe-instances
+
+##Do not edit
+RAWFILE=/tmp/rawlist.txt
+
+while true
+do
+#$EC2DESC | grep $AMINAME > $RAWFILE
+ec2-describe-instances |grep ami-aa39599a | grep running | grep ssdkingstong > $RAWFILE
+
+let i=0
+declare -a ServerIPS
+while read line; do
+    #echo $line # or whaterver you want to do with the $line variablea
+    IP=`echo $line | cut -d ' ' -f 14`
+    ServerIPS[$i]=$IP
+  i=$(( i + 1 ))
+    #echo $i
+done < $RAWFILE
+
+#echo ${ServerIPS[@]}
+
+### SSH to each server and see if there is any user logged in
+let t=0
+declare -a AddIPS
+for i in "${ServerIPS[@]}"
+do
+  #echo "connceting to $i"
+  output=`ssh -i /home/ubuntu/installer/clients.pem  ubuntu@$i 'sudo x2golistsessions_root'`
+  #echo "output is $output"
+  #if output contains GNOME then someone is logged in, else noone is in.
+  if [[ $output == *GNOME* ]]
+        then
+                #echo "$i server has someone logged in!";
+                let m=5
+        else
+                echo "$i has noone logged in. Adding it to list!";
+                AddIPS[$t]=$i
+                # Now simply check if these IPs are already in list.txt if not add them
+                if grep -q ${AddIPS[$t]} "$File"; then
+                        #echo "IP already exists!"
+                        let m=6
+                else
+                        echo ${AddIPS[$t]} >> $File
+						echo '
+          __    _____    ______                 _      _            _ 
+     _   /  |  |_   _|   | ___ \               | |    | |          | |
+   _| |_ `| |    | |     | |_/ /      __ _   __| |  __| |  ___   __| |
+  |_   _| | |    | |     |  __/      / _` | / _` | / _` | / _ \ / _` |
+    |_|  _| |_  _| |_  _ | |      _ | (_| || (_| || (_| ||  __/| (_| |
+         \___/  \___/ (_)\_|     (_) \__,_| \__,_| \__,_| \___| \__,_|
+                                                                      
+                                                                      '
+ fi
+                t=$(( t + 1 ))
+        fi
+done
+#echo ${AddIPS[@]}
+
+sleep  $CHECKPERIOD
+done
+
     sleep 2
     ;;
 "c")
@@ -391,6 +451,126 @@ sudo tar -xvf creds.tar
     ;;	
 "f")
     #here is the client setup script 
+	ldap_server='ldap://54.245.102.50'
+ldap_base='dc=us-west-2,dc=compute,dc=internal'
+ldap_users_base="ou=users,${ldap_base}"
+ldap_group_base="ou=groups,${ldap_base}"
+
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+sudo passwd ubuntu
+ 
+##mising ssh restart
+sudo apt-get update && sudo apt-get -y install ldap-utils libnss-ldapd libpam-ldap nslcd
+
+# Generate ldap.conf
+cat <<EOF | sudo tee /etc/ldap/ldap.conf
+uri  ${ldap_server}
+base ${ldap_base}
+
+ldap_version   3
+timelimit      30
+bind_timelimit 30
+idle_timelimit 3600
+bind_policy    soft
+deref          never
+
+nss_base_passwd ${ldap_users_base}?sub
+nss_base_shadow ${ldap_users_base}?sub
+nss_base_group  ${ldap_groups_base}?one
+
+pam_login_attribute  uid
+pam_password         md5
+pam_member_attribute member
+pam_filter           objectClass=posixAccount
+
+#ssl start_tls
+#ssl on
+#TLS_CACERTFILE /etc/ssl/certs/ldap.pem
+EOF
+
+sudo ln -fs /etc/ldap/ldap.conf /etc/ldap.conf
+
+cat <<EOF | sudo tee /etc/nslcd.conf
+uid nslcd
+gid nslcd
+
+uri  ${ldap_server}
+base ${ldap_users_base}
+base ${ldap_group_base}
+ldap_version   3
+EOF
+
+# PAM files
+cat <<EOF | sudo tee /etc/pam.d/common-account
+account [success=2 new_authtok_reqd=done default=ignore]  pam_unix.so
+account [success=1 default=ignore]                        pam_ldap.so
+account requisite                                         pam_deny.so
+account required                                          pam_permit.so
+EOF
+
+cat <<EOF | sudo tee /etc/pam.d/common-auth
+auth  [success=2 default=ignore]  pam_unix.so  nullok_secure
+auth  [success=1 default=ignore]  pam_ldap.so  use_first_pass
+auth  requisite                   pam_deny.so
+auth  required                    pam_permit.so
+EOF
+
+cat <<EOF | sudo tee /etc/pam.d/common-password
+password  [success=2 default=ignore]                  pam_unix.so obscure sha512
+password  [success=1 user_unknown=ignore default=die] pam_ldap.so use_authtok try_first_pass
+password  requisite                                   pam_deny.so
+password  required                                    pam_permit.so
+EOF
+
+cat <<EOF | sudo tee /etc/pam.d/common-session
+session [default=1]   pam_permit.so
+session requisite     pam_deny.so
+session required      pam_permit.so
+session required      pam_unix.so
+session optional      pam_ldap.so
+session required      pam_mkhomedir.so skel=/etc/skel umask=0022
+EOF
+
+[ -z "`grep ldap /etc/nsswitch`" ] && sudo sed -i 's/compat/compat ldap/g' /etc/nsswitch.conf
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+
+sudo service nscd  stop
+sudo service nslcd restart
+sudo service ssh   restart
+
+sudo apt-get -y install autofs
+echo " /home    /etc/auto.home " >> /etc/auto.master
+touch /etc/auto.home
+echo " *    54.245.102.50:/home/& " >> /etc/auto.home
+sudo service autofs restart
+sudo apt-get -y install ubuntu-desktop
+sudo apt-get -y install gnome-core gnome-session-fallback
+sudo apt-get -y install python-software-properties
+sudo add-apt-repository ppa:x2go/stable
+sudo apt-get update
+sudo apt-get -y install x2goserver
+sudo apt-get -y install xautolock
+sudo chmod +s /sbin/shutdown
+sudo touch /etc/xdg/autostart/xautolock.desktop
+sudo chmod 777 /etc/xdg/autostart/xautolock.desktop
+sudo echo "[Desktop Entry]
+Type=Application
+Exec=/opt/xautolock.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=XAUTOLOCK
+Name=XAUTOLOCK
+Comment[en_US]=xautolock emre
+Comment=xautolock emre" > /etc/xdg/autostart/xautolock.desktop
+sudo echo "#!/bin/sh
+shutdown -h now
+exit 0" > /etc/gdm/PostSession/Default
+sudo touch /opt/xautolock.sh
+sudo chmod 755 /opt/xautolock.sh
+sudo echo '#!/bin/bash
+xautolock -time 3 -locker "/sbin/shutdown -h now" &' > /opt/xautolock.sh
+sudo chmod 755 /opt/xautolock.sh
     sleep 2
 	;;
 *)
