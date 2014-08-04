@@ -18,16 +18,14 @@ sudo apt-get -y install git-core
 
 
 #download Kexow-setup-scripts (installer)
+sudo apt-get -y install git-core
 git clone git://github.com/morganross/Kexow-Server-Setup-Scripts.git
 git clone git://github.com/morganross/Kexow-website.git
 #git clone git://github.com/morganross/userfrosting.git
 #git clone git://github.com/morganross/pydio.git
 
 #where u want to download security file from?
-echo -n "Type in your secret key for the shared google drive folder where creds.tar is located?"
-read text
-sudo wget 'googledrive.com/host/'$text'/creds.tar' -O creds.tar
-sudo tar -C Kexow-Server-Setup-Scripts -xvf creds.tar
+
 
 #What is the new root pass?
 sudo touch pass.txt
