@@ -26,6 +26,7 @@ add some GODDAMN parameters to the ldap installer from that wget what is my ip
 treat server_script and 5 monmiter log file seperatly from install scripts. they should be thier own?
 
 ###TODO
+use main menu to ask ser to generate a config file that contains all the preseeds
 combine or chain functons
 make main menu log to file in addition to shell
 git pydio
