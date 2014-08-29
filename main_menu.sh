@@ -316,18 +316,18 @@ sudo apt-get -y install ldap-utils
 
 
 #PRESEED libness
-sudo echo 'libnss-ldap     libnss-ldap/rootbindpw  password yourpass' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/bindpw      password yourpass' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/dblogin     boolean false' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/override    boolean false' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     shared/ldapns/base-dn   string   dc=us-west-2,dc=compute,dc=internal' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/rootbinddn  string   cn=admin,dc=us-west-2,dc=compute,dc=internal' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     shared/ldapns/ldap_version      select   3' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/binddn      string   cn=proxyuser,dc=us-west-2,dc=compute,dc=internal' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     shared/ldapns/ldap-server       string   ldapi://54.245.102.50/' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/nsswitch    note' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/confperm    boolean false' | sudo debconf-set-selections -v
-sudo echo 'libnss-ldap     libnss-ldap/dbrootlogin boolean true' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/rootbindpw password yourpass' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/bindpw password yourpass' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/dblogin boolean false' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/override boolean false' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap shared/ldapns/base-dn string   dc=us-west-2,dc=compute,dc=internal' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/rootbinddn string   cn=admin,dc=us-west-2,dc=compute,dc=internal' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap shared/ldapns/ldap_version select   3' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/binddn string   cn=proxyuser,dc=us-west-2,dc=compute,dc=internal' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap shared/ldapns/ldap-server string   ldapi://54.245.102.50/' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/nsswitch note' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/confperm boolean false' | sudo debconf-set-selections -v
+sudo echo 'libnss-ldap libnss-ldap/dbrootlogin boolean true' | sudo debconf-set-selections -v
 
 sudo apt-get -y install libnss-ldap
 sudo apt-get -y install libpam-ldap
