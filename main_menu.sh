@@ -328,7 +328,7 @@ sudo echo 'libnss-ldap     libnss-ldap/nsswitch    note' | sudo debconf-set-sele
 sudo echo 'libnss-ldap     libnss-ldap/confperm    boolean false' | sudo debconf-set-selections -v
 sudo echo 'libnss-ldap     libnss-ldap/dbrootlogin boolean true' | sudo debconf-set-selections -v
 #change change2 change3 change 4 change 5 last time i enter666666666665555																
-fffff6666666666666666778888jackel
+fffff6666666666666666778888jackel	
 
 sudo apt-get -y install libnss-ldap
 sudo apt-get -y install libpam-ldap
