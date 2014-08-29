@@ -292,13 +292,25 @@ done
     sleep 2
     ;;
 "9")
-ldap_base='dc=us-west-2,dc=compute,dc=internal'
-ldap_users_base="ou=users,${ldap_base}"
-ldap_group_base="ou=groups,${ldap_base}"
 
-wget -qO- http://ipecho.net/plain ; echo
-sudo apt-get update && sudo apt-get -y install phpldapadmin slapd ldap-utils libnss-ldap libpam-ldap nslcd
+
+ldap_base='dc=us-west-2,dc=compute,dc=internal'
+#wget -qO- http://ipecho.net/plain ; echo
+
+
+sudo apt-get update
+sudo apt-get -y install phpldapadmin
+
+slapd 
+ldap-utils
+libnss-ldap
+libpam-ldap
+nslcd
+
 sudo sed -i "s/dc=example,dc=com/${ldap_base}/g" /etc/phpldapadmin/config.php
+
+
+
 
 sudo apt-get -y  install nfs-kernel-server
 echo " /home   *(rw,sync,no_subtree_check) " >> /etc/exports
