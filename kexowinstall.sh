@@ -19,7 +19,7 @@ sudo apt-get -y install git-core
 
 #download Kexow-setup-scripts (installer)
 sudo apt-get -y install git-core
-git clone git://github.com/morganross/Kexow-Server-Setup-Scripts.git
+git clone git://github.com/morganross/Kexow-Install.git
 git clone git://github.com/morganross/Kexow-website.git
 #git clone git://github.com/morganross/userfrosting.git
 #git clone git://github.com/morganross/pydio.git
