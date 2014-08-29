@@ -363,7 +363,8 @@ sudo apt-get -y install nslcd
 sudo apt-get -y  install nfs-kernel-server
 echo " /home   *(rw,sync,no_subtree_check) " >> /etc/exports
 sudo exportfs -a
-
+sudo touch /tmp/new.ldif
+sudo chmod 777 /tmp/new.ldif
 sudo echo "dn: ou=Groups,dc=us-west-2,dc=compute,dc=internal
 objectclass: organizationalUnit
 objectclass: top
