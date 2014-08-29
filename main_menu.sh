@@ -22,6 +22,7 @@ while true;do
 	echo "b. Run the server script"
 	echo "c. Move website files"
 	echo "d. Git Pydio and install"
+	echo "timmy. Add some entries to ldap"
 	echo "e. Update server_script with new keyfile and ami"
 	echo "f. run client script"
 	echo "Press any other to Exit"
