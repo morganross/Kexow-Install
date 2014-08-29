@@ -334,7 +334,7 @@ sudo apt-get -y install nslcd
 
 #sudo sed -i "s/dc=example,dc=com/${ldap_base}/g" /etc/phpldapadmin/config.php
 
-NEW CHANGES111fdrtffffkfffdddfffccceeewwwll
+NEW CHANGES111fdrtffffkfffyyyyy
 
 
 sudo apt-get -y  install nfs-kernel-server
