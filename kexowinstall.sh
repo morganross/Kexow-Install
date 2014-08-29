@@ -36,7 +36,7 @@ echo $pass>pass.txt
 
 sudo sed -i "s/PASSWORD85/${pass}/g" /home/ubuntu/Kexow-Server-Setup-Scripts/aws_bind_ip.sh
 
-cd Kexow-Server-Setup-Scripts
+cd Kexow-Install
 sudo bash ./main_menu.sh
 
 ##with script change pass in dbsettings and changestatus and aws bind
