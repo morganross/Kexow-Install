@@ -324,18 +324,18 @@ sudo echo 'libnss-ldap libnss-ldap/nsswitch note' | sudo debconf-set-selections 
 sudo echo 'libnss-ldap libnss-ldap/confperm boolean false' | sudo debconf-set-selections -v
 sudo echo 'libnss-ldap libnss-ldap/dbrootlogin boolean true' | sudo debconf-set-selections -v
 ###########################
-libnss-ldap    libnss-ldap/binddn string cn=proxyuser,dc=yourdomain,dc=com
-libnss-ldap    libnss-ldap/bindpw password    
-libnss-ldap    libnss-ldap/confperm boolean false
-libnss-ldap    libnss-ldap/dblogin boolean false
-libnss-ldap    libnss-ldap/dbrootlogin boolean true
-libnss-ldap    libnss-ldap/nsswitch note
-libnss-ldap    libnss-ldap/override boolean true
-libnss-ldap    libnss-ldap/rootbinddn string cn=manager,dc=yourdomain,dc=com
-libnss-ldap    libnss-ldap/rootbindpw password
-libnss-ldap    shared/ldapns/base-dn string dc=yourdomain,dc=com
-libnss-ldap    shared/ldapns/ldap-server string ldap://10.10.10.10/
-libnss-ldap    shared/ldapns/ldap_version select 3
+#libnss-ldap    libnss-ldap/binddn string cn=proxyuser,dc=yourdomain,dc=com
+#libnss-ldap    libnss-ldap/bindpw password    
+#libnss-ldap    libnss-ldap/confperm boolean false
+#libnss-ldap    libnss-ldap/dblogin boolean false
+#libnss-ldap    libnss-ldap/dbrootlogin boolean true
+#libnss-ldap    libnss-ldap/nsswitch note
+#libnss-ldap    libnss-ldap/override boolean true
+#libnss-ldap    libnss-ldap/rootbinddn string cn=manager,dc=yourdomain,dc=com
+#libnss-ldap    libnss-ldap/rootbindpw password
+#libnss-ldap    shared/ldapns/base-dn string dc=yourdomain,dc=com
+#libnss-ldap    shared/ldapns/ldap-server string ldap://10.10.10.10/
+#libnss-ldap    shared/ldapns/ldap_version select 3
 ###########################################
 echo -e " \
 libnss-ldap libnss-ldap/dblogin boolean false
