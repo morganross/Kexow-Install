@@ -330,6 +330,8 @@ sudo echo 'libnss-ldap     libnss-ldap/dbrootlogin boolean true' | sudo debconf-
 #change change2 change3 change 4 change 5 last time i enter666666666665555																
 fffff6666666666666666778888jackel	
 
+											
+											morganross@rossmorr.com
 sudo apt-get -y install libnss-ldap
 sudo apt-get -y install libpam-ldap
 sudo apt-get -y install nslcd
