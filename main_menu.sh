@@ -323,6 +323,33 @@ sudo echo 'libnss-ldap shared/ldapns/ldap-server string ldapi://54.245.102.50/' 
 sudo echo 'libnss-ldap libnss-ldap/nsswitch note' | sudo debconf-set-selections -v
 sudo echo 'libnss-ldap libnss-ldap/confperm boolean false' | sudo debconf-set-selections -v
 sudo echo 'libnss-ldap libnss-ldap/dbrootlogin boolean true' | sudo debconf-set-selections -v
+###########################
+libnss-ldap    libnss-ldap/binddn string cn=proxyuser,dc=yourdomain,dc=com
+libnss-ldap    libnss-ldap/bindpw password    
+libnss-ldap    libnss-ldap/confperm boolean false
+libnss-ldap    libnss-ldap/dblogin boolean false
+libnss-ldap    libnss-ldap/dbrootlogin boolean true
+libnss-ldap    libnss-ldap/nsswitch note
+libnss-ldap    libnss-ldap/override boolean true
+libnss-ldap    libnss-ldap/rootbinddn string cn=manager,dc=yourdomain,dc=com
+libnss-ldap    libnss-ldap/rootbindpw password
+libnss-ldap    shared/ldapns/base-dn string dc=yourdomain,dc=com
+libnss-ldap    shared/ldapns/ldap-server string ldap://10.10.10.10/
+libnss-ldap    shared/ldapns/ldap_version select 3
+###########################################
+echo -e " \
+libnss-ldap libnss-ldap/dblogin boolean false
+libnss-ldap shared/ldapns/base-dn   string  dc=us-west-2,dc=compute,dc=internal
+libnss-ldap libnss-ldap/binddn  string  cn=proxyuser,dc=us-west-2,dc=compute,dc=internal
+libnss-ldap libnss-ldap/dbrootlogin boolean true
+libnss-ldap libnss-ldap/override    boolean true
+libnss-ldap shared/ldapns/ldap-server   string  ldap://54.245.102.50/
+libnss-ldap libnss-ldap/confperm    boolean false
+libnss-ldap libnss-ldap/rootbinddn  string  cn=admin,dc=us-west-2,dc=compute,dc=internal
+libnss-ldap shared/ldapns/ldap_version  select  3
+libnss-ldap libnss-ldap/nsswitch    note    \
+" | sudo debconf-set-selections -v
+#######################################################
 
 sudo apt-get -y install libnss-ldap
 sudo apt-get -y install libpam-ldap
