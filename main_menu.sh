@@ -1,6 +1,9 @@
 #!/bin/bash
 
+ZFILE="/etc/bind/zones/kexow.com.zone"
+IP_LIST="/etc/bind/list.txt"
 LOG="/var/log/named/queries.log"
+
 
 while true;do
 	echo "*******************************************************************"
