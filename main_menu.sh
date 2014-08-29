@@ -294,20 +294,29 @@ done
 "9")
 
 
-ldap_base='dc=us-west-2,dc=compute,dc=internal'
+#ldap_base='dc=us-west-2,dc=compute,dc=internal'
 #wget -qO- http://ipecho.net/plain ; echo
 
+sudo apt-get -y update
 
-sudo apt-get update
 sudo apt-get -y install phpldapadmin
+sudo sed -i "s/dc=example,dc=com/dc=us-west-2,dc=compute,dc=internal/g" /etc/phpldapadmin/config.php
 
-slapd 
-ldap-utils
-libnss-ldap
-libpam-ldap
-nslcd
+sudo echo 'slapd slapd/password1 password yourpass' | sudo debconf-set-selections -v
+sudo echo 'slapd slapd/password2 password yourpass' | sudo debconf-set-selections -v
+sudo echo 'slapd slapd/root_password password yourpass' | sudo debconf-set-selections -v
+sudo echo 'slapd slapd/root_password_again password yourpass' | sudo debconf-set-selections -v
 
-sudo sed -i "s/dc=example,dc=com/${ldap_base}/g" /etc/phpldapadmin/config.php
+#sudo echo 'slapd slapd/internal/adminpw	password yourpass' | sudo debconf-set-selections -v
+#sudo echo 'slapd slapd/internal/generated_adminpw password	yourpass' | sudo debconf-set-selections -v
+
+sudo apt-get -y install slapd
+sudo apt-get -y install ldap-utils
+sudo apt-get -y install libnss-ldap
+sudo apt-get -y install libpam-ldap
+sudo apt-get -y install nslcd
+
+#sudo sed -i "s/dc=example,dc=com/${ldap_base}/g" /etc/phpldapadmin/config.php
 
 
 
