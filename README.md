@@ -11,7 +11,7 @@ sudo bash main_menu.sh
 
 
 ##TODO
-
+do a control make notes here
 order of operations
 re-order main menu
 comment main menu
@@ -45,3 +45,6 @@ remake website to include headers
 remake website to git userfrosting
 
 turn install script into program, into webpage, ami maker?
+
+
+
