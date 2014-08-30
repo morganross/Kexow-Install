@@ -12,11 +12,13 @@ sudo bash main_menu.sh
 
 ##TODO
 do a control make notes here
+idk if it was the restart of manaully adding folder
+after all  i dont see how this sctpt has permisn to exportas w/o sudo
 order of operations
 re-order main menu
 comment main menu
 debug main menu
-
+ 
 
 
 add some GODDAMN parameters to the ldap installer from that wget what is my ip
