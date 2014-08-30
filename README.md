@@ -12,6 +12,38 @@ sudo bash main_menu.sh
 
 ##TODO
 do a control make notes here
+//////////////////////
+1 askes to press enter to contiue
+install.sh is trying to change pass in /server/scripts that is no more
+it allowed me to restart bind 9, whihc means the new CATs worked? first try?
+#6 cant find files to copy...are we cat'ing them now?
+#8 no work cuse no pk files
+we know that libnss aint noninteractive
+we know that nscld isnt wihgter but at lest its just two enters
+lamp asks me twice tfor password, and again in gui2x, then again in cli and other enter suttf
+apoache or lightd mytphp light 8 passwords
+"a"
+chmod: cannot access `/home/ubuntu/Kexow-Server-Setup-Scripts/clients.pem': No such file or directory
+chmod: cannot access `/home/ubuntu/Kexow-Server-Setup-Scripts/server_script.sh': No such file or directory
+ * Restarting web server apache2                                                                                     ... waiting                                                                                                 [ OK ]
+./main_menu.sh: line 413: append: command not found
+"c" cannot acess fles
+"d" just says your mom
+"timmy" invaild creds
+"e" just does nothing
+"5" seems to work kindacd 
+clinet has gui info demands
+had to reboot server
+
+
+
+
+
+
+
+
+
+
 idk if it was the restart of manaully adding folder
 after all  i dont see how this sctpt has permisn to exportas w/o sudo
 order of operations
