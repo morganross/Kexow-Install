@@ -363,7 +363,9 @@ sudo apt-get -y install nslcd
 
 sudo apt-get -y  install nfs-kernel-server
 echo " /home   *(rw,sync,no_subtree_check) " >> /etc/exports
+#this no longer works, so i chmoded the dir
 sudo exportfs -a
+#this part doesnt work after a sudo reboot? huh? does it need sudo?
     sleep 2
     ;;
 "timmy")
