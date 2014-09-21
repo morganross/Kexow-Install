@@ -34,7 +34,15 @@ chmod: cannot access `/home/ubuntu/Kexow-Server-Setup-Scripts/server_script.sh':
 "5" seems to work kindacd 
 clinet has gui info demands
 had to reboot server
+LAST TIME I THOUGHT PROBLEM WAS but maybe it was just restart reqiored
+auto exporta wasnt sudo'd 
+also couldnt autocrate home dir
+BUT MAYBE ust restart
+clinet asks me for lightdm
+x2go needs and enter
 
+control doesnt work on first go round even after reboot i bet tits home dir sht
+when i add it manually it works.
 
 
 
