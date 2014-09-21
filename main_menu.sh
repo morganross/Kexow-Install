@@ -50,6 +50,9 @@ if [ $? -ne 0 ]; then
 	echo "Failed to install bind9"
 	return 1
 fi    
+#this is new 
+sudo mkdr /etc/bind/zones/
+
 sudo chmod a+w /etc/bind/zones
 cat > /etc/bind/named.conf.local << EOF
 zone "kexow.com" {
@@ -365,8 +368,9 @@ sudo apt-get -y  install nfs-kernel-server
 echo " /home   *(rw,sync,no_subtree_check) " >> /etc/exports
 #this no longer works, so i chmoded the dir
 sudo exportfs -a
-#this part doesnt work after a sudo reboot? huh? does it need sudo?
-    sleep 2
+# i got it to work, but still wont make home dir on login
+#myabe bc users created thourgh phpldapadmin are assigend folders, bypassing mkhomedir, or mkhomedir is broken on clinet side after move to touch, or permissions are broken on srever
+ #home dir is added by changestatus.sh you idjit   sleep 2
     ;;
 "timmy")
 
