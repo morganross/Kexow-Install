@@ -14,6 +14,26 @@ sudo bash main_menu.sh
 
 
 
+##New TODO New TODO##########################
+
+create snapshot image voume with disk
+start said image from command line
+install desktop on guest, connect via x2go
+
+create image from 12.04 instead of 14.04
+
+
+install redhat 7
+install openstack
+
+convert aws script to openstack api
+
+adjust server script to communcate with both private and public clouds.
+do a once over with the scripts, do a hand written note debug, after reading old todo.
+
+
+side project, do nfs over wan now its over lan
+
 ##TODO
 do a control make notes here
 //////////////////////
