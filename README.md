@@ -15,9 +15,24 @@ sudo bash main_menu.sh
 
 
 ##New TODO New TODO##########################
-install guest tools
+why are snapshots not working on running or shutdown instaces? 
 
-create snapshot image voume with disk
+why wont it let me delete a volume?
+
+why cant i donwload syslog via ftp?
+why isnt it logging to /var/log/nova?
+where is it logging to?
+
+delete curent volume
+enable logging
+view log files
+
+openstack on ubuntu for later
+
+
+install guest tools
+enable logging, find logs, use log tool
+create snapshot image voume with disk, from stopped instance, and from running instace
 start said image from command line
 install desktop on guest, connect via x2go
 
