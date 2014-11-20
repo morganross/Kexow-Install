@@ -15,6 +15,10 @@ sudo bash main_menu.sh
 
 
 ##New TODO New TODO##########################
+get isp login and pass
+get router login and pass
+get wifi pass
+
 why are snapshots not working on running or shutdown instaces? 
 
 why wont it let me delete a volume?
