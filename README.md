@@ -15,6 +15,7 @@ sudo bash main_menu.sh
 
 
 ##New TODO New TODO##########################
+install guest tools
 
 create snapshot image voume with disk
 start said image from command line
@@ -33,6 +34,8 @@ do a once over with the scripts, do a hand written note debug, after reading old
 
 
 side project, do nfs over wan now its over lan
+create image from scratch
+
 
 ##TODO
 do a control make notes here
