@@ -19,6 +19,8 @@ sudo bash main_menu.sh
 get isp login and pass
 get router login and pass
 get wifi pass
+get wifi on hnyper visor
+get long cat 6 and teminal stuff including plyers
 
 
 why are snapshots not working on running or shutdown instaces? 
