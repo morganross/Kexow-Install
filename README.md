@@ -16,41 +16,13 @@ sudo bash main_menu.sh
 
 
 ##New TODO New TODO##########################
-get isp login and pass
-get router login and pass
-get wifi pass
-get wifi on hnyper visor
-get long cat 6 and teminal stuff including plyers
+see cloud spreadheet to make a cloud
+enable virtualization in bios
+replace small ssd with big hdd if nessasary
+maybe learn a little dual booting along the way after 
 
 
-why are snapshots not working on running or shutdown instaces? 
 
-why wont it let me delete a volume?
-
-why cant i donwload syslog via ftp?
-why isnt it logging to /var/log/nova?
-where is it logging to?
-
-delete curent volume
-enable logging
-view log files
-
-openstack on ubuntu for later
-
-
-install guest tools
-enable logging, find logs, use log tool
-create snapshot image voume with disk, from stopped instance, and from running instace
-start said image from command line
-install desktop on guest, connect via x2go
-
-create image from 12.04 instead of 14.04
-
-
-install redhat 7
-install openstack
-
-convert aws script to openstack api
 
 adjust server script to communcate with both private and public clouds.
 do a once over with the scripts, do a hand written note debug, after reading old todo.
