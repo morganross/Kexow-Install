@@ -18,7 +18,7 @@ sudo bash main_menu.sh
 ##New TODO New TODO##########################
 see cloud spreadheet to make a cloud
 enable virtualization in bios
-replace small ssd with big hdd if nessasary
+
 maybe learn a little dual booting along the way after 
 
 
